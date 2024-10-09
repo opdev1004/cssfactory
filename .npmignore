@@ -1,0 +1,11 @@
+test/
+src/
+.git/
+.editorconfig
+.gitignore
+tsconfig.json
+public/
+depdist/
+build/
+pack/
+publish.md

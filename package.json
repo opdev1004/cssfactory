@@ -1,0 +1,28 @@
+{
+  "name": "@opdev1004/cssfactory",
+  "version": "0.0.1",
+  "description": "Simple CSS Library Generation Tool",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "ts-node test/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opdev1004/cssfactory.git"
+  },
+  "keywords": [
+    "css"
+  ],
+  "author": "Victor Chanil Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opdev1004/cssfactory/issues"
+  },
+  "homepage": "https://github.com/opdev1004/cssfactory#readme",
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

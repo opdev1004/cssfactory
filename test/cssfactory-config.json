@@ -1,0 +1,10 @@
+{
+  "main": {
+    "rootDirs": ["./test/src/common", "./test/src/pages"],
+    "outDir": "./test/dist/"
+  },
+  "theme": {
+    "rootDirs": ["./test/src/themes/dark", "./test/src/themes/light"],
+    "outDir": "./test/dist/"
+  }
+}

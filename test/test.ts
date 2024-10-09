@@ -1,4 +1,4 @@
-import CSSFactory from "../src/index";
+import { CSSFactory } from "../src/index";
 import * as path from "path";
 
 const configpath = path.resolve(__dirname, "./cssfactory-config.json");

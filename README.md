@@ -4,7 +4,7 @@ Simple CSS Library Generation Tool
 
 ## 🤔 Background
 
-Building CSS libaray is bothersome. So I have built this tool to provide CSS libraries development environment.
+Building CSS libaray is bothersome. So I have built this tool to provide CSS libraries development environment. Just put css files in directories and build with configuration. The most simple way to build CSS library!
 
 ## 📢 Notice
 
@@ -14,14 +14,22 @@ Have a look at test directory of repo for use.
 
 ## ▶️ Installation
 
+Install with a boilerplate project
+
 ```
-npm i @opdev1004/cssfactory
+npm create cssfactory@latest
+```
+
+Manually using it from your project:
+
+```
+npm i @opdev1004/cssfactory@latest
 ```
 
 or
 
 ```
-npm i -D @opdev1004/cssfactory
+npm i -D @opdev1004/cssfactory@latest
 ```
 
 ## 📖 Example
@@ -41,15 +49,28 @@ cssfactory-config.json:
 }
 ```
 
-index.ts or index.js:
+index.ts:
 
 ```
-import CSSFactory from "cssfactory";
+import { CSSFactory } from "cssfactory";
 import * as path from "path";
 
 const configpath = path.resolve(__dirname, "./cssfactory-config.json");
 const cssfactory = new CSSFactory(configpath);
 cssfactory.combineCSS();
+```
+
+node.js:
+
+```
+const CSSFactory = require("cssfactory");
+const path = require("path");
+
+const configpath = path.resolve(__dirname, "./cssfactory-config.json");
+
+const cssfactory = new CSSFactory.CSSFactory(configpath);
+cssfactory.combineCSS();
+
 ```
 
 ## 💪 Support CSS Factory!

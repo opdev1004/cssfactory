@@ -8,7 +8,7 @@ interface CSSConfig {
   };
 }
 
-export default class CSSFactory {
+export class CSSFactory {
   private config: CSSConfig = {};
 
   constructor(configPath: string = "") {

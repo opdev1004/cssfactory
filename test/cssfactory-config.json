@@ -1,10 +1,12 @@
 {
   "main": {
     "rootDirs": ["./test/src/common", "./test/src/pages"],
-    "outDir": "./test/dist/"
+    "outDir": "./test/dist/",
+    "includeChildDir": false
   },
   "theme": {
-    "rootDirs": ["./test/src/themes/dark", "./test/src/themes/light"],
-    "outDir": "./test/dist/"
+    "rootDirs": ["./test/src/themes"],
+    "outDir": "./test/dist/",
+    "includeChildDir": true
   }
 }

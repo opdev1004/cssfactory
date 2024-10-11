@@ -4,7 +4,8 @@ import * as path from "path";
 interface CSSConfig {
   [key: string]: {
     rootDirs: string[];
-    outDir: string;
+    outDir?: string;
+    includeChildDir?: boolean;
   };
 }
 
@@ -27,27 +28,39 @@ export class CSSFactory {
     return JSON.parse(configContent);
   }
 
-  private async readCSSFiles(rootDir: string): Promise<string[]> {
-    return new Promise((resolve, reject) => {
-      fs.readdir(rootDir, (err: any, files: any) => {
-        if (err) {
-          return reject(err);
-        }
+  private async readCSSFiles(
+    rootDir: string,
+    includeChildDir: boolean
+  ): Promise<string[]> {
+    const cssFiles: string[] = [];
 
-        const cssFiles = files.filter((file: any) => file.endsWith(".css"));
-        resolve(cssFiles.map((file: any) => path.join(rootDir, file)));
+    const readDirectory = (dir: string) => {
+      const files = fs.readdirSync(dir);
+      files.forEach((file) => {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+
+        if (stat.isDirectory() && includeChildDir) {
+          readDirectory(filePath); // Recursive call for child directories
+        } else if (file.endsWith(".css")) {
+          cssFiles.push(filePath); // Add CSS file to the list
+        }
       });
-    });
+    };
+
+    readDirectory(rootDir);
+    return cssFiles;
   }
 
   public async combineCSS() {
-    for (const [cssFileName, { rootDirs, outDir }] of Object.entries(
-      this.config
-    )) {
+    for (const [
+      cssFileName,
+      { rootDirs, outDir = "./dist/", includeChildDir = false },
+    ] of Object.entries(this.config)) {
       const allCssContents: string[] = [];
 
       for (const dir of rootDirs) {
-        const cssFiles = await this.readCSSFiles(dir);
+        const cssFiles = await this.readCSSFiles(dir, includeChildDir);
         for (const cssFile of cssFiles) {
           const content = fs.readFileSync(cssFile, "utf-8");
           allCssContents.push(content);
@@ -56,7 +69,7 @@ export class CSSFactory {
 
       const combinedCss = allCssContents.join("\n");
       const outputPath = path.join(outDir, `${cssFileName}.css`);
-      fs.mkdirSync(outDir, { recursive: true }); // Ensure output directory exists
+      fs.mkdirSync(outDir, { recursive: true });
       fs.writeFileSync(outputPath, combinedCss);
       console.log(`CSS Factory written to ${outputPath}`);
     }

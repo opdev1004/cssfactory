@@ -40,11 +40,13 @@ cssfactory-config.json:
 {
   "main": {
     "rootDirs": ["./src/common", "./src/pages"],
-    "outDir": "./dist/"
+    "outDir": "./dist/",
+    "includeChildDir": false
   },
   "theme": {
     "rootDirs": ["./src/themes/dark", "./src/themes/light"],
-    "outDir": "./dist/"
+    "outDir": "./dist/",
+    "includeChildDir": true
   }
 }
 ```

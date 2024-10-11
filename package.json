@@ -1,6 +1,6 @@
 {
   "name": "@opdev1004/cssfactory",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple CSS Library Generation Tool",
   "main": "dist/index.js",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npx tsc",
     "test": "ts-node test/test.ts",
-    "test:js": "node test/test.js"
+    "test:js": "npx tsc && node test/test.js"
   },
   "repository": {
     "type": "git",
